@@ -7,7 +7,7 @@
 
     <div class="stats">
       <div class="row">
-        <div class="col-4">
+        <div class="col-5">
           <div class="list-group" id="list-tab" role="tablist">
             <a
               class="list-group-item list-group-item-action active"
@@ -35,7 +35,7 @@
             >Encounter Stats</a>
           </div>
         </div>
-        <div class="col-8" style="padding-left: 160px;">
+        <div class="col-8" style="margin-left: 400px; margin-top: -120px;">
           <div class="tab-content" id="nav-tabContent">
             <div
               class="tab-pane fade show active"
@@ -55,8 +55,9 @@
               aria-labelledby="list-profile-list"
             >
               <ul>
-                <li>Candies to Evolve: {{ pokemon.candies_to_evolve}}</li>
-                <li>Distance to walk for candy: {{ pokemon.distance_for_candy }}</li>
+                Candies to Evolve: {{ pokemon.candies_to_evolve}}
+                <br />
+                Distance to walk for candy: {{ pokemon.distance_for_candy }}
               </ul>
             </div>
             <div
@@ -93,7 +94,7 @@
   background: url("http://www.sclance.com/backgrounds/pokedex-background/pokedex-background_1778969.png");
 }
 .row {
-  padding-left: 80px;
+  padding-left: 45px;
   width: auto;
   padding-top: 200px;
   height: 400px;
