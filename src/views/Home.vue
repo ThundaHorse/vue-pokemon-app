@@ -1,11 +1,15 @@
 <template>
   <div class="home">
-    <div id="pokemons" v-for="pokemon in allPokemons" :key="pokemon.id">
-      {{ pokemon.pokemon_id}}.
-      <a
-        @click="pokemonPage(pokemon)"
-        style="cursor: pointer;"
-      >{{ pokemon.name }}</a>
+    <div class="container">
+      <div class="scroll-box">
+        <div id="pokemons" v-for="pokemon in allPokemons" :key="pokemon.id">
+          {{ pokemon.pokemon_id}}.
+          <a
+            @click="pokemonPage(pokemon)"
+            style="cursor: pointer;"
+          >{{ pokemon.name }}</a>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -13,6 +17,13 @@
 <style scoped>
 #pokemons {
   margin-left: 50px;
+}
+.scroll-box {
+  height: 1000px;
+  overflow-y: scroll;
+}
+.scroll-box::-webkit-scrollbar {
+  width: 0 !important;
 }
 </style>
 
@@ -24,7 +35,6 @@ export default {
   data: function() {
     return {};
   },
-  computed: mapGetters(["allPokemons"]),
   methods: {
     ...mapActions(["fetchPokemon"]),
     pokemonPage(input) {
@@ -32,7 +42,13 @@ export default {
     }
   },
   created() {
-    this.fetchPokemon();
-  }
+    if (localStorage.getItem("jwt")) {
+      this.fetchPokemon();
+    } else {
+      alert("Sign in to view Pokemon");
+      this.$router.push("/login");
+    }
+  },
+  computed: mapGetters(["allPokemons"])
 };
 </script>
