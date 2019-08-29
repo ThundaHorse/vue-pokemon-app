@@ -16,7 +16,7 @@ export default new Vuex.Store({
       axios.defaults.headers.common["Authorization"] =
         "Bearer " + localStorage.getItem("jwt");
       await axios.get("/api/pokemon").then(response => {
-        return commit("setPokemon", response.data);
+        commit("setPokemon", response.data);
       });
     }
   },

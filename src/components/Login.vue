@@ -6,7 +6,7 @@
       </ul>
       <div class="row">
         <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-          <div class="card card-signin my-5">
+          <div class="card bg-dark text-white card-signin my-5">
             <div class="card-body">
               <h5 class="card-title text-center">Sign In</h5>
               <form class="form-signin" v-on:submit.prevent="submit()">
@@ -35,8 +35,8 @@
                   <label for="inputPassword">Password</label>
                 </div>
                 <button
-                  class="btn btn-lg btn-primary btn-block text-uppercase"
-                  v-on:click="submit()"
+                  class="btn btn-lg btn-info btn-block text-uppercase"
+                  @click="submit()"
                   type="submit"
                 >Sign in</button>
                 <hr class="my-4" />
@@ -66,7 +66,7 @@ export default {
   created: function() {
     if (localStorage.getItem("jwt")) {
       alert("You are already signed in!");
-      this.$router.push("/");
+      this.$router.push("/home");
     }
   },
   methods: {
@@ -80,12 +80,9 @@ export default {
         .then(response => {
           axios.defaults.headers.common["Authorization"] =
             "Bearer " + response.data.jwt;
-
           localStorage.setItem("jwt", response.data.jwt);
           localStorage.setItem("user_id", response.data.user_id);
-          setTimeout(() => {
-            this.$router.push("/");
-          }, 2000);
+          this.$router.push("/home");
         })
         .catch(error => {
           this.errors = ["Invalid password or email"];

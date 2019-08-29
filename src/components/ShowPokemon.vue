@@ -79,7 +79,7 @@
 </template>
 
 <style scoped>
-.display-4 {
+/* .display-4 {
   text-align: center;
 }
 .stats {
@@ -98,7 +98,7 @@
   width: auto;
   padding-top: 200px;
   height: 400px;
-}
+} */
 </style>
 
 <script>
