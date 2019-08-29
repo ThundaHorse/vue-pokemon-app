@@ -44,7 +44,7 @@
         <div class="container">
           <h1 class="title">
             <img
-              src="https://fontmeme.com/permalink/190828/dbb9430f5f531e11c61628339e400cb1.png"
+              src="https://fontmeme.com/temporary/e0d49cdabd80d369386856cd4dd73628.png"
               alt="logo"
             />
           </h1>
