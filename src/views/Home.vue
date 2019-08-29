@@ -113,12 +113,7 @@ export default {
     }
   },
   created() {
-    if (localStorage.getItem("jwt")) {
-      this.fetchPokemon();
-    } else {
-      alert("Sign in to view");
-      this.$router.push("/login");
-    }
+    this.fetchPokemon();
   },
   computed: {
     ...mapGetters(["allPokemons"])
