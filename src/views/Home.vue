@@ -33,29 +33,28 @@
         <div class="column" v-if="pokemon.length !== 0">
           <div class="card">
             <div class="card-content">
-              <b>Stats</b>
-              <span style="float: right">
-                <img :src="pokemon.url" :alt="pokemon.name" style="height: 200px; width: auto;" />
-              </span>
-              <hr />
-              <br />
+              <h1 class="title is-1">
+                <b>{{ pokemon.name }}</b>
+                <span style="float: right">
+                  <img :src="pokemon.url" :alt="pokemon.name" style="height: 200px; width: auto;" />
+                </span>
+              </h1>
               <header class="card-header">
-                <h1 class="title">
-                  {{ pokemon.name }}
-                  <br />
-                  {{ pokemon.type }}
-                </h1>
+                <h1 class="title">{{ pokemon.type }}</h1>
                 <br />
               </header>
               <ul v-for="(stat, label, index) in pokemon.stats" :key="index">
-                <b>{{ formatStat(label) }}</b>
-                : {{ stat }}
-                <br />
+                <p>
+                  <b>{{ formatStat(label) }}</b>
+                  :
+                  {{ stat }}
+                </p>
               </ul>
-              <br />
               <ul v-for="(encounter_stat, category) in pokemon.encounter_stats" :key="category">
-                <b>{{ formatStat(category) }}</b>
-                : {{ encounter_stat }}
+                <p>
+                  <b>{{ formatStat(category) }}</b>
+                  : {{ encounter_stat }}
+                </p>
               </ul>
             </div>
           </div>
@@ -64,46 +63,47 @@
         <div class="column" v-if="pokemon.length !== 0">
           <div class="card">
             <div class="card-content">
-              <b>Candy Info</b>
-              <span style="float: right;">
-                <img
-                  src="https://img.rankedboost.com/wp-content/uploads/2016/08/Pokemon-Go-Candies.png"
-                  alt="candy"
-                  style="height: 50px; width: auto;"
-                />
-              </span>
+              <h1 class="title is-3">
+                <b>Candy Info</b>
+                <span style="float: right;">
+                  <img
+                    src="https://img.rankedboost.com/wp-content/uploads/2016/08/Pokemon-Go-Candies.png"
+                    alt="candy"
+                    style="height: 50px; width: auto;"
+                  />
+                </span>
+              </h1>
               <hr />
-              <br />
-              <div v-if="pokemon.length === 0">Select a Pokemon to see its stats</div>
-              <div v-else>
-                <ul>
+              <ul>
+                <p>
                   <b>Candies to Evolve</b>
                   : {{ pokemon.candies_to_evolve}}
                   <br />
                   <b>Distance to walk for candy</b>
                   : {{ pokemon.distance_for_candy }}
-                </ul>
-              </div>
+                </p>
+              </ul>
             </div>
           </div>
           <br />
           <div class="columns">
             <div class="column">
               <div class="card">
-                <!-- <header class="card-header">Shiny Info</header> -->
                 <div class="card-content">
-                  <b>Shiny Possibilities</b>
-                  <span style="float: right;">
-                    <img
-                      src="https://d1e4pidl3fu268.cloudfront.net/8f7687e5-d6e0-4965-a7da-0be2576df3d9/sparkle.PNG"
-                      alt="sparkles"
-                      style="height: 50px; width: auto;"
-                    />
-                  </span>
+                  <h1 class="title is-3">
+                    <b>Shiny Possibilities</b>
+                    <span style="float: right;">
+                      <img
+                        src="https://d1e4pidl3fu268.cloudfront.net/8f7687e5-d6e0-4965-a7da-0be2576df3d9/sparkle.PNG"
+                        alt="sparkles"
+                        style="height: 50px; width: auto;"
+                      />
+                    </span>
+                  </h1>
                   <hr />
                 </div>
                 <ul v-for="(chance, index) in formatShiny(pokemon.shiny)" :key="index">
-                  <li style="text-align: center;">{{ chance }}</li>
+                  <p style="text-align: center;">{{ chance }}</p>
                 </ul>
                 <br />
               </div>
@@ -128,6 +128,9 @@
   opacity: 1;
 }
 h1 {
+  color: white;
+}
+p {
   color: white;
 }
 .scroll-box {
