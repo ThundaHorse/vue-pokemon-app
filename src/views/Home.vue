@@ -1,52 +1,79 @@
 <template>
   <div class="home">
     <div class="container">
-      <div class="columns">
-        <div class="column is-three-quarters-mobile is-one-fourth-desktop">
+      <div class="columns is-multiline">
+        <div class="column is-three-quarters-mobile is-3-desktop">
           <div class="card">
-            <header class="card-header-background-color">
-              <p class="card-header-title">Pokemon List</p>
-            </header>
+            <!-- Pokemon List -->
             <div class="card-content">
+              <b>Pokemon List</b>
+              <span style="float: right">
+                <img
+                  src="https://bankkita.com/images/pokeball-png-19.png"
+                  alt="pokeball"
+                  style="height: 50px; width: auto;"
+                />
+              </span>
+              <hr />
               <div class="scroll-box">
                 <div id="pokemons" v-for="pokemon in allPokemons" :key="pokemon.id">
-                  {{ pokemon.pokemon_id}}.
                   <a
                     @click="pokemonPage(pokemon.id)"
-                    style="cursor: pointer;"
-                  >{{ pokemon.name }}</a>
+                    style="cursor: pointer; text-align: left;"
+                  >{{ pokemon.id}}. {{ pokemon.name }}</a>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="column">
+        <div class="column" v-if="pokemon.length === 0">
+          <h1 class="title" style="text-align: center;">Select a Pokemon to view its stats!</h1>
+        </div>
+        <!-- stats -->
+        <div class="column" v-if="pokemon.length !== 0">
           <div class="card">
-            <header class="card-header">Stats</header>
             <div class="card-content">
-              <div v-if="pokemon.length === 0">Select a Pokemon to see its stats</div>
-              <div v-else>
-                <header class="card-header">
-                  <h1 class="title">{{ pokemon.name }}</h1>
-                </header>
+              <b>Stats</b>
+              <span style="float: right">
+                <img :src="pokemon.url" :alt="pokemon.name" style="height: 200px; width: auto;" />
+              </span>
+              <hr />
+              <br />
+              <header class="card-header">
+                <h1 class="title">
+                  {{ pokemon.name }}
+                  <br />
+                  {{ pokemon.type }}
+                </h1>
                 <br />
-                <ul v-for="(stat, label, index) in pokemon.stats" :key="index">
-                  <b>{{ formatStat(label) }}</b>
-                  : {{ stat }}
-                </ul>
+              </header>
+              <ul v-for="(stat, label, index) in pokemon.stats" :key="index">
+                <b>{{ formatStat(label) }}</b>
+                : {{ stat }}
                 <br />
-                <ul v-for="(encounter_stat, category) in pokemon.encounter_stats" :key="category">
-                  <b>{{ formatStat(category) }}</b>
-                  : {{ encounter_stat }}
-                </ul>
-              </div>
+              </ul>
+              <br />
+              <ul v-for="(encounter_stat, category) in pokemon.encounter_stats" :key="category">
+                <b>{{ formatStat(category) }}</b>
+                : {{ encounter_stat }}
+              </ul>
             </div>
           </div>
         </div>
-        <div class="column">
+        <!-- candy and shiny -->
+        <div class="column" v-if="pokemon.length !== 0">
           <div class="card">
-            <header class="card-header">Candy Info</header>
             <div class="card-content">
+              <b>Candy Info</b>
+              <span style="float: right;">
+                <img
+                  src="https://img.rankedboost.com/wp-content/uploads/2016/08/Pokemon-Go-Candies.png"
+                  alt="candy"
+                  style="height: 50px; width: auto;"
+                />
+              </span>
+              <hr />
+              <br />
               <div v-if="pokemon.length === 0">Select a Pokemon to see its stats</div>
               <div v-else>
                 <ul>
@@ -56,6 +83,29 @@
                   <b>Distance to walk for candy</b>
                   : {{ pokemon.distance_for_candy }}
                 </ul>
+              </div>
+            </div>
+          </div>
+          <br />
+          <div class="columns">
+            <div class="column">
+              <div class="card">
+                <!-- <header class="card-header">Shiny Info</header> -->
+                <div class="card-content">
+                  <b>Shiny Possibilities</b>
+                  <span style="float: right;">
+                    <img
+                      src="https://d1e4pidl3fu268.cloudfront.net/8f7687e5-d6e0-4965-a7da-0be2576df3d9/sparkle.PNG"
+                      alt="sparkles"
+                      style="height: 50px; width: auto;"
+                    />
+                  </span>
+                  <hr />
+                </div>
+                <ul v-for="(chance, index) in formatShiny(pokemon.shiny)" :key="index">
+                  <li style="text-align: center;">{{ chance }}</li>
+                </ul>
+                <br />
               </div>
             </div>
           </div>
@@ -72,6 +122,10 @@
 .card {
   background-color: black;
   opacity: 0.7;
+  border-radius: 10px;
+}
+.card:hover {
+  opacity: 1;
 }
 h1 {
   color: white;
@@ -110,6 +164,27 @@ export default {
         formatted.push(word.charAt(0).toUpperCase() + word.slice(1));
       }
       return formatted.join(" ");
+    },
+    formatShiny(input) {
+      let formatted = [];
+      for (var k in input) {
+        if (input[k] === true) {
+          if (k === "evo") {
+            formatted.push("Can be acquired through evolution");
+          } else if (k === "egg") {
+            formatted.push("Can be acquired through an egg");
+          } else if (k === "raid") {
+            formatted.push("Can be acquired through a raid");
+          } else if (k === "wild") {
+            formatted.push("Can be caught in the wild");
+          }
+        }
+      }
+      if (formatted.length === 0) {
+        return "?";
+      } else {
+        return formatted;
+      }
     }
   },
   created() {
