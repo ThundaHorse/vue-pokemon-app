@@ -24,12 +24,10 @@
 #app {
   background-image: url("https://i.pinimg.com/originals/1c/a6/e1/1ca6e1c35e2d884230242cc0326dbf28.jpg");
   background-repeat: no-repeat;
-  /* background-position: 50% 50%; */
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  /* margin: 0 auto; */
   height: 100vh;
   height: calc(var(--vh, 1vh) * 100);
 }
