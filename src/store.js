@@ -6,7 +6,8 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    pokemons: []
+    pokemons: [],
+    selected: []
   },
   getters: {
     allPokemons: state => state.pokemons
