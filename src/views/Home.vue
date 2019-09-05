@@ -13,14 +13,35 @@
                   alt="pokeball"
                   style="height: 50px; width: auto;"
                 />
+                <br />
               </span>
-              <hr />
+              <!-- Search box -->
+              <div class="control has-icons-left has-icons-right">
+                <input
+                  class="input is-rounded is-small"
+                  type="text"
+                  v-model="search"
+                  placeholder="Search for a Pokémon"
+                />
+                <span class="icon is-right">
+                  <img
+                    src="https://art.pixilart.com/e6cd43303d55faa.png"
+                    alt="pokeball"
+                    style="height: auto; width: auto;"
+                  />
+                </span>
+                <hr />
+              </div>
               <div class="scroll-box">
-                <div id="pokemons" v-for="pokemon in allPokemons" :key="pokemon.id">
+                <div
+                  id="pokemons"
+                  v-for="pokemon in orderBy(filterBy(allPokemons, search.toLowerCase()), sortAttribute)"
+                  :key="pokemon.id"
+                >
                   <a
                     @click="pokemonPage(pokemon.id)"
                     style="cursor: pointer; text-align: left;"
-                  >{{ pokemon.id}}. {{ pokemon.name }}</a>
+                  >{{ pokemon.pokemon_id}}. {{ pokemon.name }}</a>
                 </div>
               </div>
             </div>
@@ -144,13 +165,16 @@ p {
 
 <script>
 import { mapGetters, mapActions } from "vuex";
+import Vue2Filters from "vue2-filters";
 import axios from "axios";
 
 export default {
   name: "home",
   data: function() {
     return {
-      pokemon: []
+      pokemon: [],
+      search: "",
+      sortAttribute: ""
     };
   },
   methods: {
@@ -195,6 +219,7 @@ export default {
   },
   computed: {
     ...mapGetters(["allPokemons"])
-  }
+  },
+  mixins: [Vue2Filters.mixin]
 };
 </script>

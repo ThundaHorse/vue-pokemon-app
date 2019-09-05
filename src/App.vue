@@ -6,10 +6,7 @@
         <div class="container">
           <h1 class="title">
             <a href="/">
-              <img
-                src="https://fontmeme.com/temporary/e0d49cdabd80d369386856cd4dd73628.png"
-                alt="logo"
-              />
+              <img src="../public/pokemon_banner.png" alt="logo" />
             </a>
           </h1>
         </div>
