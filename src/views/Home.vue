@@ -88,7 +88,7 @@
           <div class="card">
             <div class="card-content">
               <h1 class="title is-3">
-                <b>Candy Info</b>
+                <b>Candy Stats</b>
                 <span style="float: right;">
                   <img
                     src="https://img.rankedboost.com/wp-content/uploads/2016/08/Pokemon-Go-Candies.png"
