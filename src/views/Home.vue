@@ -6,7 +6,7 @@
           <div class="card">
             <!-- Pokemon List -->
             <div class="card-content">
-              <b>Pokemon List</b>
+              <b style="color:white;">Pokemon List</b>
               <span style="float: right">
                 <img
                   src="https://bankkita.com/images/pokeball-png-19.png"
@@ -22,16 +22,18 @@
                   type="text"
                   v-model="search"
                   placeholder="Search for a Pokémon"
+                  @click="search = ''"
                 />
                 <span class="icon is-right">
                   <img
-                    src="https://art.pixilart.com/e6cd43303d55faa.png"
+                    src="https://vignette.wikia.nocookie.net/pokemon/images/c/c6/201Unown_X_Dream.png/revision/latest?cb=20141206092908"
                     alt="pokeball"
-                    style="height: auto; width: auto;"
+                    style="height: 20px; width: auto; padding-right: 5px;"
                   />
                 </span>
                 <hr />
               </div>
+              <!-- Poke list -->
               <div class="scroll-box">
                 <div
                   id="pokemons"
@@ -82,6 +84,7 @@
         </div>
         <!-- candy and shiny -->
         <div class="column" v-if="pokemon.length !== 0">
+          <!-- Candy -->
           <div class="card">
             <div class="card-content">
               <h1 class="title is-3">
@@ -109,6 +112,7 @@
           <br />
           <div class="columns">
             <div class="column">
+              <!-- Shiny -->
               <div class="card">
                 <div class="card-content">
                   <h1 class="title is-3">
@@ -123,6 +127,11 @@
                   </h1>
                   <hr />
                 </div>
+                <img
+                  :src="pokemon.shiny_url"
+                  :alt="'shiny ' + pokemon.name"
+                  style="height: 200px; width: auto;"
+                />
                 <ul v-for="(chance, index) in formatShiny(pokemon.shiny)" :key="index">
                   <p style="text-align: center;">{{ chance }}</p>
                 </ul>
