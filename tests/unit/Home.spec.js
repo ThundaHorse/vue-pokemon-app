@@ -85,4 +85,8 @@ describe("Home.vue", () => {
   it("returns pokemons", () => {
     shallowMount(Home, { store, localVue });
   });
+
+  it("checks that pokemon are loaded", () => {
+    shallowMount(Home, { store, localVue });
+  });
 });
