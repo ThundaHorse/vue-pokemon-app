@@ -84,7 +84,7 @@
         </div>
         <!-- candy and shiny -->
         <div class="column" v-if="pokemon.length !== 0">
-          <!-- Candy -->
+          <!-- Candy Info -->
           <div class="card">
             <div class="card-content">
               <h1 class="title is-3">
