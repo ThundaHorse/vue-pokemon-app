@@ -81,12 +81,4 @@ describe("Home.vue", () => {
     shallowMount(Home, { store, localVue });
     expect(Home.created).toBeDefined();
   });
-
-  it("returns pokemons", () => {
-    shallowMount(Home, { store, localVue });
-  });
-
-  it("checks that pokemon are loaded", () => {
-    const wrapper = shallowMount(Home, { store, localVue });
-  });
 });
