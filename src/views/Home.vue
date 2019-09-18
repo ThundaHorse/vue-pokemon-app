@@ -53,6 +53,7 @@
           <h1 class="title" style="text-align: center;">Select a Pokemon to view its stats!</h1>
         </div>
         <!-- stats -->
+        <!-- <h1 class="animated infinite bounce delay-2s">Example</h1> -->
         <div class="column" v-if="pokemon.length !== 0">
           <div class="card">
             <div class="card-content">
