@@ -12,7 +12,6 @@
         </div>
       </div>
     </section>
-
     <router-view />
   </div>
 </template>
