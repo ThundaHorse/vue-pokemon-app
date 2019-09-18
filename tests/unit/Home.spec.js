@@ -6,11 +6,7 @@ const localVue = createLocalVue();
 localVue.use(Vuex);
 
 describe("Home.vue", () => {
-  let state;
-  let store;
-  let actions;
-  let getters;
-  let mutations;
+  let state, store, actions, getters, mutations;
 
   beforeEach(() => {
     state = {
